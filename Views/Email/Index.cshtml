@@ -1,0 +1,21 @@
+﻿@model Email 
+
+<div>
+<form asp-action="Index">
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Subject</label>
+        <br/>
+        <input type="text" asp-for="@Model.Subject" placeholder="Enter subject here ...." />
+
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Message body</label>
+        <textarea asp-for="@Model.Body" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Body here....."></textarea>
+
+    </div>
+        <input type="submit" class="btn btn-primary" value="Send Email"/>
+    </form>
+    
+    @ViewData["Message"]
+</div>

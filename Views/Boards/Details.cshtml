@@ -1,0 +1,69 @@
+﻿@model Board
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1>Kanban board - @Model.BoardName </h1>
+
+<div>
+    <h4>Board</h4>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="mx-3">
+                <h3 class="text-center text-info">Todo</h3>
+                @foreach (var item in Model.Userstories.Where(x => x.Status == Userstory.kanbanStatus.Todo))
+                {
+                    <div class="card mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@item.Status</h6>
+                            <p class="card-text">@item.Description</p>
+                            <a asp-controller="Userstories" asp-action="Edit" asp-route-id="@item.UserstoryId">Edit</a> |
+                            <a asp-controller="Userstories" asp-action="Delete" asp-route-id="@item.UserstoryId">Delete</a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="mx-3">
+                <h3 class="text-center text-primary">Doing</h3>
+                @foreach (var item in Model.Userstories.Where(x => x.Status == Userstory.kanbanStatus.Doing))
+                {
+                    <div class="card mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@item.Status</h6>
+                            <p class="card-text">@item.Description</p>
+                            <a asp-controller="Userstories" asp-action="Edit" asp-route-id="@item.UserstoryId">Edit</a> |
+                            <a asp-controller="Userstories" asp-action="Delete" asp-route-id="@item.UserstoryId">Delete</a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="mx-3">
+                <h3 class="text-center text-success">Done</h3>
+                @foreach (var item in Model.Userstories.Where(x => x.Status == Userstory.kanbanStatus.Done))
+                {
+                    <div class="card mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@item.Status</h6>
+                            <p class="card-text">@item.Description</p>
+                            <a asp-controller="Userstories" asp-action="Edit" asp-route-id="@item.UserstoryId">Edit</a> |
+                            <a asp-controller="Userstories" asp-action="Delete" asp-route-id="@item.UserstoryId">Delete</a> |
+                            <a asp-controller="Email" asp-action="Index">Email</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a> |
+    <a asp-controller="Userstories" asp-action="Create">Add user story</a>
+</div>

@@ -1,0 +1,24 @@
+﻿@using Kanban_board.ViewModel
+@model Kanban_board.ViewModel.DisplayVm
+
+@{ }
+
+<div>
+    <div>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Roles
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            @foreach (var role in Model.Roles)
+            {
+                <h5 class="text-info">@role</h5>
+            }
+        </div>
+    </div>
+    <partial name="_CreateRolePartial" model=" new RoleVm()" >
+</div>
+<div>
+    <partial name="_AddUserToRolePartial" model="new UpdateUserRoleVm() { Users =@Model.Users, Roles = @Model.Roles}" >
+</div>

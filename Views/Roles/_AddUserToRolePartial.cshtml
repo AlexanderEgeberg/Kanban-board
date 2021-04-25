@@ -1,0 +1,43 @@
+﻿@model Kanban_board.ViewModel.UpdateUserRoleVm
+
+@{ 
+// razor code here if yo need that
+}
+
+<div>
+    <form asp-controller="Roles" asp-action="UpdateUserRole" method="post">
+        <h5>Select a user</h5>
+        <div>
+            @foreach (var user in @Model.Users)
+            {
+                <div>
+                    <input type="radio" asp-for="@Model.UserEmail" value="@user.Email" />
+                    @user.Email
+                </div>
+                <div>                    
+                    @foreach (var role in user.Roles)
+                    {
+                        <div>
+                            @role.Name
+                        </div>
+                    }                   
+                </div> 
+            }
+        </div>
+        <br/>
+        <h5 class="h5">Select the role you wish to add to the selected user</h5>
+
+    @foreach (var role in @Model.Roles)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Role" value="@role" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                    @role
+                    </label>
+                </div>
+            }
+    <input type="submit" class="btn btn-success" value="Add Role" />
+        <input type="hidden" asp-for="Delete" value="false" id="delete"  />
+        <input type="submit" value="Delete Role" class="btn btn-danger" onclick="document.getElementById('delete').value = 'true'" />
+    </form>
+</div>

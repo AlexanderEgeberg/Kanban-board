@@ -1,0 +1,10 @@
+﻿@model Kanban_board.ViewModel.RoleVm
+
+@{ }
+
+<div>
+    <form asp-controller="Roles" asp-action="CreateRole" method="post">
+        <input placeholder="Name of new role:" asp-for="@Model.Name" />
+        <input type="submit" class="btn btn-primary" value="Create" />
+    </form>
+</div>
